@@ -1,0 +1,11 @@
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/bin/Release/netcoreapp2.0/anonyFlow_backend.deps.json
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/bin/Release/netcoreapp2.0/anonyFlow_backend.runtimeconfig.json
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/bin/Release/netcoreapp2.0/anonyFlow_backend.runtimeconfig.dev.json
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/bin/Release/netcoreapp2.0/anonyFlow_backend.dll
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/bin/Release/netcoreapp2.0/anonyFlow_backend.pdb
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.csprojResolveAssemblyReference.cache
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.csproj.CoreCompileInputs.cache
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.AssemblyInfoInputs.cache
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.AssemblyInfo.cs
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.dll
+/Users/fsociety/Dropbox/Appar/anonyFlow_backend/anonyFlow_backend/obj/Release/netcoreapp2.0/anonyFlow_backend.pdb

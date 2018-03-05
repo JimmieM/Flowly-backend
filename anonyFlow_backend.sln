@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anonyFlow_backend", "anonyFlow_backend\anonyFlow_backend.csproj", "{474E22FB-FB20-49B2-A283-3FDE094A776A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{474E22FB-FB20-49B2-A283-3FDE094A776A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{474E22FB-FB20-49B2-A283-3FDE094A776A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{474E22FB-FB20-49B2-A283-3FDE094A776A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{474E22FB-FB20-49B2-A283-3FDE094A776A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
