@@ -39,6 +39,8 @@ namespace anonyFlow_backend.Controllers
             int post_topic_id = post.post_topic_id;
             string post_country = post.post_geolocations.post_country;
             string post_locality = post.post_geolocations.post_locality;
+
+            Console.WriteLine(post_content);
             string post_by_geo = post.post_by_geo;
                 
             Console.WriteLine(post);

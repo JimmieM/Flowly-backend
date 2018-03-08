@@ -13,24 +13,64 @@ using System.Text;
  */
 namespace anonyFlow_backend.Controllers
 {
+    public class LatestMessage : Response {
+
+        public string latest_message { get; set; }
+        public string latest_message_date { get; set; }
+
+        // contructor for returning an error.
+        public LatestMessage(Response response)
+            : base(response.success, response.error, response.message)
+        {
+            this.latest_message = latest_message;
+            this.latest_message_date = latest_message_date;
+            return;
+        }
+
+        // contructor for returning the values. Re-use when sending to client?
+        public LatestMessage(Response response, string latest_message, string latest_message_date) 
+            : base (response.success, response.error, response.message) 
+        {
+            this.latest_message = latest_message;
+            this.latest_message_date = latest_message_date;
+            return;
+        }
+    }
+
     public class Contact {
         
         public string username { get; set; }
         public int user_id { get; set; }
         public int accepted { get; set; }
-        public string latest_message { get; set; }
+        public LatestMessage latest_message_object { get; set; }
+        public string latest_message_text { get; set; }
 
         public int met_by_post { get; set; }
 
-        public Contact(string username, int user_id, int accepted, int met_by_post, string latest_message) {
+        // used when returning a user with data about the latestmessage. Otherwise its just a text.
+        // used to sort chats in profile interface by latest message recieved/sent.
+        public Contact(string username, int user_id, int accepted, int met_by_post, LatestMessage latest_message_object) {
             this.username = username;
             this.user_id = user_id;
             this.accepted = accepted;
             this.met_by_post = met_by_post;
-            this.latest_message = latest_message;
+            this.latest_message_object = latest_message_object;
 
             return;
         }
+
+        // only text. Such as "User would like to add you"
+        public Contact(string username, int user_id, int accepted, int met_by_post, string latest_message_text)
+        {
+            this.username = username;
+            this.user_id = user_id;
+            this.accepted = accepted;
+            this.met_by_post = met_by_post;
+            this.latest_message_text = latest_message_text;
+
+            return;
+        }
+
 
         // used for outgoing requets, where you're the requestee.
         public Contact(int met_by_post) {
@@ -83,7 +123,7 @@ namespace anonyFlow_backend.Controllers
                                     int accepted = reader.GetInt32(2);
 
                                     Response usernameCallback;
-                                    Response latestMessage;
+                                    LatestMessage latestMessage;
                                     if(contact_user_id == user_id) {
                                         usernameCallback = getUsernameById(contact_with_user_id);    
                                         latestMessage = getLatestMessage(user_id, contact_with_user_id);
@@ -127,7 +167,7 @@ namespace anonyFlow_backend.Controllers
                                                     contacts_id,
                                                   reader.GetInt32(2),
                                                   reader.GetInt32(3),
-                                                    message));
+                                                    latestMessage));
                                             } else {
                                                 awaiting.Add(new Contact(
                                                   username,
@@ -153,7 +193,8 @@ namespace anonyFlow_backend.Controllers
             return new Response(true, "", contacts, awaiting, requests);
         }
 
-        public Response getLatestMessage(int your_id, int contacts_id) {
+        public LatestMessage getLatestMessage(int your_id, int contacts_id) {
+            Response resp;
             try
             {
                 // include connection..
@@ -176,15 +217,17 @@ namespace anonyFlow_backend.Controllers
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            if (reader == null)
+                            if (!reader.HasRows)
                             {
-                                return new Response(false, "");
+                                resp = new Response(true, false, "");
+                                return new LatestMessage(resp);
                             }
                             else
                             {
                                 while (reader.Read())
                                 {
-                                    return new Response(true, reader.GetString(0).ToString());
+                                    resp = new Response(true, false, "");
+                                    return new LatestMessage(resp, reader.GetString(0).ToString(), reader.GetString(1).ToString());
                                 }
 
                             }
@@ -195,9 +238,13 @@ namespace anonyFlow_backend.Controllers
             catch (SqlException e)
             {
                 Console.WriteLine(e.ToString());
-                return new Response(false, "");
+                resp = new Response(true, false, e.ToString());
+                return new LatestMessage(resp);
             }
-            return new Response(false, "Query found 0 results");
+
+            // Redundant code....
+            resp = new Response(true, false, "");
+            return new LatestMessage(resp);
         }
 
         public Response getUsernameById(int id) {

@@ -1,13 +1,13 @@
 ﻿<Properties StartupConfiguration="{474E22FB-FB20-49B2-A283-3FDE094A776A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Interfaces/ResponseClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Controllers/PostInteractionController.cs">
     <Files>
       <File FileName="anonyFlow_backend/Controllers/user/SignupController.cs" Line="113" Column="14" />
       <File FileName="anonyFlow_backend/Controllers/user/LoginController.cs" Line="39" Column="36" />
       <File FileName="anonyFlow_backend/Interfaces/ResponseClass.cs" Line="94" Column="9" />
       <File FileName="anonyFlow_backend/Controllers/chat/GetChatController.cs" Line="39" Column="27" />
       <File FileName="anonyFlow_backend/Controllers/chat/GetChatsController.cs" Line="106" Column="41" />
-      <File FileName="anonyFlow_backend/Controllers/NewPostController.cs" Line="44" Column="37" />
-      <File FileName="anonyFlow_backend/Controllers/StandaloneFlowController.cs" Line="72" Column="51" />
+      <File FileName="anonyFlow_backend/Controllers/NewPostController.cs" Line="43" Column="45" />
+      <File FileName="anonyFlow_backend/Controllers/StandaloneFlowController.cs" Line="57" Column="30" />
       <File FileName="anonyFlow_backend/Controllers/user/notifications/GetNotificationsController.cs" Line="44" Column="9" />
       <File FileName="anonyFlow_backend/Controllers/topics/GetTopicsController.cs" Line="85" Column="50" />
       <File FileName="anonyFlow_backend/Controllers/NewCommentController.cs" Line="54" Column="45" />
@@ -16,11 +16,11 @@
       <File FileName="anonyFlow_backend/Middleware/PostValidationClass.cs" Line="100" Column="74" />
       <File FileName="anonyFlow_backend/Controllers/user/GetUserActivityController.cs" Line="138" Column="52" />
       <File FileName="anonyFlow_backend/Modules/Modules.cs" Line="1" Column="1" />
-      <File FileName="anonyFlow_backend/Modules/WebApiConfig.cs" Line="1" Column="1" />
       <File FileName="anonyFlow_backend/Modules/GetUserByPostIdClass.cs" Line="25" Column="34" />
       <File FileName="anonyFlow_backend/Modules/GetUserIdByUsernameClass.cs" Line="22" Column="10" />
       <File FileName="anonyFlow_backend/Controllers/user/CreateContactController.cs" Line="34" Column="51" />
-      <File FileName="anonyFlow_backend/Modules/ModulesClass.cs" Line="30" Column="24" />
+      <File FileName="anonyFlow_backend/Modules/ModulesClass.cs" Line="19" Column="17" />
+      <File FileName="anonyFlow_backend/Controllers/PostInteractionController.cs" Line="1" Column="1" />
       <File FileName="anonyFlow_backend/Controllers/FlowController.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="anonyFlow_backend/Controllers/topics/NewTopicController.cs" Line="11" Column="2" NotebookId="1" />
       <File FileName="anonyFlow_backend/Controllers/topics/VoteTopicController.cs" Line="195" Column="3" NotebookId="1" />
@@ -31,7 +31,7 @@
       <File FileName="anonyFlow_backend/Modules/GetUsernameByUserId.cs" Line="27" Column="10" NotebookId="1" />
       <File FileName="anonyFlow_backend/Controllers/chat/NewChatController.cs" Line="21" Column="6" NotebookId="1" />
       <File FileName="anonyFlow_backend/Controllers/user/AnswerContactController.cs" Line="24" Column="16" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/user/ViewUserProfileController.cs" Line="90" Column="39" NotebookId="1" />
+      <File FileName="anonyFlow_backend/Controllers/user/ViewUserProfileController.cs" Line="84" Column="22" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

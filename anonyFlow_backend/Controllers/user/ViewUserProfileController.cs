@@ -77,7 +77,7 @@ namespace anonyFlow_backend.Controllers
                               "[users].[user_id] = " + this.profile_user_id + " " +
                               "AND (contact_user_id = " + this.profile_user_id + " AND contact_with_user_id = " + this.user_id + ") " +
                               "OR " +
-                              "(contact_user_id = " + this.profile_user_id + " AND contact_with_user_id = " + this.user_id + ")");
+                              "(contact_user_id = " + this.user_id + " AND contact_with_user_id = " + this.profile_user_id + ")");
 
                     String sql = sb.ToString();
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -102,7 +102,7 @@ namespace anonyFlow_backend.Controllers
                             }
                             else
                             {
-                                return new Response(false, "");
+                                return new Response(false, "User does not exist!");
                             }
                         }
                     }

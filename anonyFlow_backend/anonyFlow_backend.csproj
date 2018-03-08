@@ -30,5 +30,6 @@
     <Compile Remove="Controllers\ValuesController.cs" />
     <Compile Remove="modules\Modules.cs" />
     <Compile Remove="Controllers\user\notifications\NewNotificationController.cs" />
+    <Compile Remove="Modules\Modules.cs" />
   </ItemGroup>
 </Project>

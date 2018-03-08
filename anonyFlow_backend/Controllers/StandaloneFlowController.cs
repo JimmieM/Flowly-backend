@@ -38,9 +38,9 @@ namespace anonyFlow_backend.Controllers
                       " [posts].[post_date]," +
                       " [posts].[post_dislikes]," +
                       " [posts].[post_likes]," +
-                              " [posts].[post_topic_id]," + 
-                              " [posts].[post_locality]," + 
-                              " [posts].[post_country]" + 
+                      " [posts].[post_topic_id]," + 
+                      " [posts].[post_locality]," + 
+                      " [posts].[post_country]" + 
                       " FROM [dbo].[posts]" +
                       " WHERE post_id = " + post_id
                      );
@@ -53,7 +53,7 @@ namespace anonyFlow_backend.Controllers
                         {
                             if (!reader.HasRows)
                             {
-                                return new Response(false, "Query found 0 results");
+                                return new Response(false, "This post might have been deleted.");
                             }
                             else
                             {

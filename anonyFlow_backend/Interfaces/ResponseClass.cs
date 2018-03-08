@@ -33,6 +33,13 @@ namespace anonyFlow_backend.Controllers
             return success;
         }
 
+        public Response(Boolean success, Boolean error)
+        {
+            this.success = success;
+            this.error = error;
+            return;
+        }
+
         public Response(Boolean success, int integer)
         {
             this.success = success;

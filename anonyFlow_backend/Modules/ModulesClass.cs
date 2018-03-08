@@ -36,8 +36,14 @@ namespace anonyFlow_backend.Controllers
                 return date;
 
             } catch(DataMisalignedException e) {
+                Console.WriteLine(e);
                 return dateInput;
             }
+        }
+
+        public static byte[] ToByteArray(string str)
+        {
+            return Encoding.ASCII.GetBytes(str);
         }
 
         public string sha256(string password)
