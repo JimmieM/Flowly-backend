@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.Contracts;
 
 /*
  * Class developed for users to report a post or comment. Where comment is bound to post.
@@ -23,18 +24,20 @@ namespace anonyFlow_backend.Controllers.abuse
         public int reported_user_id; // the user of abuse
         public string report_table;
         public int report_table_id;
-
+        public string report_reason;
 
         public ReportAbuseByPost(
             int reportee_user_id, 
             int reported_user_id, 
             string report_table, 
-            int report_table_id
+            int report_table_id,
+            string report_reason
         ) {
             this.reportee_user_id = reportee_user_id;
             this.reported_user_id = reported_user_id;
             this.report_table = report_table;
             this.report_table_id = report_table_id;
+            this.report_reason = report_reason;
         }
 
         public Response report() {
@@ -42,7 +45,7 @@ namespace anonyFlow_backend.Controllers.abuse
 
             try
             {
-                string sql = "INSERT INTO reports (report_by_user_id, report_table, report_table_id, report_user_id, report_date) VALUES (@report_by_user_id, @report_table, @report_table_id, @report_user_id, @report_date)";
+                string sql = "INSERT INTO reports (report_by_user_id, report_table, report_table_id, report_user_id, report_date, report_reason) VALUES (@report_by_user_id, @report_table, @report_table_id, @report_user_id, @report_date, @report_reason)";
 
                 Console.WriteLine(sql);
                 using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
@@ -55,6 +58,7 @@ namespace anonyFlow_backend.Controllers.abuse
                         cmd.Parameters.AddWithValue("@report_table_id", this.report_table_id);
                         cmd.Parameters.AddWithValue("@report_date", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
                         cmd.Parameters.AddWithValue("@report_user_id", this.reported_user_id);
+                        cmd.Parameters.AddWithValue("@report_reason", this.report_reason);
 
                         cmd.ExecuteNonQuery();
 
@@ -66,7 +70,8 @@ namespace anonyFlow_backend.Controllers.abuse
             {
                 string msg = "Insert Error: ";
                 msg += ex.Message;
-                return new Response(false, msg);
+                throw new Exception(msg.ToString());
+                //return new Response(false, msg);
             }
 
         }
@@ -81,16 +86,25 @@ namespace anonyFlow_backend.Controllers.abuse
         [HttpPost]
         public Response Post([FromBody]dynamic obj)
         {
-            var user_id = obj.user_id; // 1
-            var user_reported_id = obj.user_content_creator_id;
-            var table_id = obj.table_id; // 1 
-            var table = obj.table; // 'post'
+            Contract.Ensures(Contract.Result<Response>() != null);
+            int user_id = obj.user_id; // 1
+            int user_reported_id = obj.user_content_creator_id;
+            int table_id = obj.table_id; // 1 
+            string table = obj.table; // 'post'
+            string reason = obj.reason;
             // a report of post id 1 has been filed.
 
+            Console.WriteLine(obj);
 
-            // File the report into system
-            ReportAbuseByPost new_report = new ReportAbuseByPost(user_id, user_reported_id, table, table_id);
-            Response report = new_report.report();
+            try {
+                // File the report into system
+                ReportAbuseByPost new_report = new ReportAbuseByPost(user_id, user_reported_id, table, table_id, reason);
+                Response report = new_report.report();
+
+                Console.WriteLine(report.success);
+            } catch(Exception e) {
+                Console.WriteLine(e);   
+            }
 
             // if its an account
             if(user_reported_id != 0) {
