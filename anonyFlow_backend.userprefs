@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{474E22FB-FB20-49B2-A283-3FDE094A776A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Controllers/abuse/FilterContentClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Controllers/abuse/ReportPostContentController.cs">
     <Files>
       <File FileName="anonyFlow_backend/Controllers/user/SignupController.cs" Line="113" Column="14" />
       <File FileName="anonyFlow_backend/Controllers/user/LoginController.cs" Line="39" Column="36" />
@@ -17,14 +17,15 @@
       <File FileName="anonyFlow_backend/Modules/Modules.cs" Line="1" Column="1" />
       <File FileName="anonyFlow_backend/Modules/GetUserByPostIdClass.cs" Line="25" Column="34" />
       <File FileName="anonyFlow_backend/Modules/GetUserIdByUsernameClass.cs" Line="22" Column="10" />
-      <File FileName="anonyFlow_backend/Controllers/user/CreateContactController.cs" Line="34" Column="51" />
+      <File FileName="anonyFlow_backend/Controllers/user/CreateContactController.cs" Line="104" Column="1" />
       <File FileName="anonyFlow_backend/Modules/ModulesClass.cs" Line="19" Column="17" />
       <File FileName="anonyFlow_backend/Controllers/PostInteractionController.cs" Line="1" Column="1" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/ReportPostContentController.cs" Line="28" Column="52" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/FilterContentClass.cs" Line="32" Column="33" />
+      <File FileName="anonyFlow_backend/Controllers/abuse/ReportPostContentController.cs" Line="105" Column="21" />
+      <File FileName="anonyFlow_backend/Controllers/abuse/FilterContentClass.cs" Line="21" Column="127" />
       <File FileName="anonyFlow_backend/Controllers/abuse/ReportClass.cs" Line="12" Column="24" NotebookId="1" />
       <File FileName="anonyFlow_backend/Controllers/chat/GetChatsController.cs" Line="32" Column="21" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/CollectReportsClass.cs" Line="117" Column="75" NotebookId="1" />
+      <File FileName="anonyFlow_backend/Controllers/abuse/CollectReportsClass.cs" Line="183" Column="57" NotebookId="1" />
+      <File FileName="anonyFlow_backend/Modules/BanUserClass.cs" Line="15" Column="10" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

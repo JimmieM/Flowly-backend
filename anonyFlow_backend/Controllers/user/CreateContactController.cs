@@ -60,7 +60,7 @@ namespace anonyFlow_backend.Controllers
 
             if (user_id == user_contact_id)
             {
-                return new Response(false, "You can not add yourself bro..");
+                return new Response(false, "You can not add yourself.");
             }
 
             if (alreadyContact(user_id, user_contact_id).success)

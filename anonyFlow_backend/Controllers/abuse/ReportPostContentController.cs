@@ -18,26 +18,102 @@ using Microsoft.AspNetCore.Mvc;
 namespace anonyFlow_backend.Controllers.abuse
 {
 
+    public class ReportAbuseByPost {
+        public int reportee_user_id; // the user reporting
+        public int reported_user_id; // the user of abuse
+        public string report_table;
+        public int report_table_id;
 
 
+        public ReportAbuseByPost(
+            int reportee_user_id, 
+            int reported_user_id, 
+            string report_table, 
+            int report_table_id
+        ) {
+            this.reportee_user_id = reportee_user_id;
+            this.reported_user_id = reported_user_id;
+            this.report_table = report_table;
+            this.report_table_id = report_table_id;
+        }
+
+        public Response report() {
+            SqlConnectionStringBuilder builder = WebApiConfig.Connection();
+
+            try
+            {
+                string sql = "INSERT INTO reports (report_by_user_id, report_table, report_table_id, report_user_id, report_date) VALUES (@report_by_user_id, @report_table, @report_table_id, @report_user_id, @report_date)";
+
+                Console.WriteLine(sql);
+                using (SqlConnection conn = new SqlConnection(builder.ConnectionString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@report_by_user_id", this.reportee_user_id);
+                        cmd.Parameters.AddWithValue("@report_table", this.report_table);
+                        cmd.Parameters.AddWithValue("@report_table_id", this.report_table_id);
+                        cmd.Parameters.AddWithValue("@report_date", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                        cmd.Parameters.AddWithValue("@report_user_id", this.reported_user_id);
+
+                        cmd.ExecuteNonQuery();
+
+                        return new Response(true, "");
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string msg = "Insert Error: ";
+                msg += ex.Message;
+                return new Response(false, msg);
+            }
+
+        }
+    }
 
     [Route("api/abuse/[controller]")]
     public class ReportPostContentController : Controller
     {
+
+        private int maximum_reports = 15;
+
         [HttpPost]
         public Response Post([FromBody]dynamic obj)
         {
             var user_id = obj.user_id; // 1
+            var user_reported_id = obj.user_content_creator_id;
             var table_id = obj.table_id; // 1 
             var table = obj.table; // 'post'
             // a report of post id 1 has been filed.
 
 
+            // File the report into system
+            ReportAbuseByPost new_report = new ReportAbuseByPost(user_id, user_reported_id, table, table_id);
+            Response report = new_report.report();
 
+            // if its an account
+            if(user_reported_id != 0) {
+                // check if the user is going to be banned based on past reports.
+                // call collectReportsClass
+                CollectReportsClass collection = new CollectReportsClass(table, table_id, user_id);
+                CollectedReportsObject returnable = collection.returnReports();
+
+                if (returnable.success)
+                {
+                    var returnable_reports_received = returnable.reports_received;
+
+                    // ban the user
+                    if (returnable_reports_received >= this.maximum_reports)
+                    {
+                        BanUserClass ban_blass = new BanUserClass(user_reported_id);
+
+                        Response ban = ban_blass.BanUser();
+                    }
+                }
+            }
+
+            return new Response(true, false, "");
         }
-
-
-
-
     }
 }
