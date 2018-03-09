@@ -14,6 +14,7 @@
     <Folder Include="Controllers\topics\" />
     <Folder Include="Controllers\beta_test\" />
     <Folder Include="Middleware\" />
+    <Folder Include="Controllers\abuse\" />
   </ItemGroup>
 
   <ItemGroup>

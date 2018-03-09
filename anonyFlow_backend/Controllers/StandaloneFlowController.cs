@@ -47,6 +47,8 @@ namespace anonyFlow_backend.Controllers
                     
                     String sql = sb.ToString();
 
+                    Console.WriteLine(sql);
+
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())

@@ -108,7 +108,7 @@ namespace anonyFlow_backend.Controllers
                     connection.Open();
                     StringBuilder sb = new StringBuilder();
 
-                    sb.Append("SELECT TOP (50) comment_id, comment_date, comment_post_id, comment_content FROM comments WHERE comment_user_id = " + this.user_id);
+                    sb.Append("SELECT TOP (50) comment_post_id, comment_date, comment_id, comment_content FROM comments WHERE comment_user_id = " + this.user_id);
                     sb.Append(" ORDER BY comment_date DESC");
 
                     String sql = sb.ToString();
