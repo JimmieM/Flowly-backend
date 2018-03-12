@@ -8,7 +8,7 @@ using System;
  *  has to be filtered when returning back to client app.
  * 
  */
-namespace anonyFlow_backend.Controllers.abuse
+namespace anonyFlow_backend.Controllers
 {
     public class FilterContentClass
     {
@@ -34,7 +34,6 @@ namespace anonyFlow_backend.Controllers.abuse
             // get the report List back
             CollectedReportsObject returnable = collection.returnReports();
 
-            // 
             return returnable.reports_received >= this.maximum_reports;
         }
     }

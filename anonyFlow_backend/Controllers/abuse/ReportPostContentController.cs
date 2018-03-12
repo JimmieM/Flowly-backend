@@ -16,7 +16,7 @@ using System.Diagnostics.Contracts;
  * 
  */
 
-namespace anonyFlow_backend.Controllers.abuse
+namespace anonyFlow_backend.Controllers
 {
 
     public class ReportAbuseByPost {

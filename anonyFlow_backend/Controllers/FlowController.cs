@@ -45,6 +45,8 @@ namespace anonyFlow_backend.Controllers
         public string post_locality { get; set; }
         public string post_country { get; set; }
 
+        public bool post_filter { get; set; }
+
         // define by each comment connect to current post
         public List<comment> post_comments { get; set; } // from comments table
 
@@ -59,7 +61,8 @@ namespace anonyFlow_backend.Controllers
             int post_topic_id,
             string post_locality,
             string post_country,
-            List<comment> post_comments
+            List<comment> post_comments,
+            bool post_filter
         )
         {
             this.post_id = post_id;
@@ -72,6 +75,7 @@ namespace anonyFlow_backend.Controllers
             this.post_locality = post_locality;
             this.post_country = post_country;
             this.post_comments = post_comments;
+            this.post_filter = post_filter;
             return;
         }
     }
@@ -84,9 +88,7 @@ namespace anonyFlow_backend.Controllers
         StringBuilder sb;
 
         public Response getFlow(string flow_type, string posts_by) {
-
-            Console.WriteLine("Params:" + flow_type + " " + posts_by);
-
+            
             var flow = new List<flow>();
 
             try
@@ -155,9 +157,14 @@ namespace anonyFlow_backend.Controllers
                                 return new Response(false, "Query found 0 results");
                             }
                             else {
+                                FilterContentClass filter_class;
                                 while (reader.Read()) {
 
                                     var date = modules.betweenDates(reader.GetString(3).ToString());
+                                    filter_class = new FilterContentClass("post", reader.GetInt32(0));
+                                    bool filter = filter_class.shouldBeFiltered();
+
+                                    Console.WriteLine("Should filter; " + filter);
                                     List<comment> Comments = GetComments(reader.GetInt32(0));
                                     flow.Add(new flow(
                                         reader.GetInt32(0),
@@ -169,7 +176,8 @@ namespace anonyFlow_backend.Controllers
                                         reader.GetInt32(6),
                                         reader.GetValue(7).ToString(),
                                         reader.GetValue(8).ToString(),
-                                        Comments
+                                        Comments,
+                                        filter
                                     ));
                                 }
                             }

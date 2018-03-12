@@ -73,7 +73,8 @@ namespace anonyFlow_backend.Controllers
                                      reader.GetInt32(6),
                                      reader.GetValue(7).ToString(),
                                      reader.GetValue(8).ToString(),
-                                     Comments
+                                     Comments,
+                                        false
                                  ));
                                 }
                             }

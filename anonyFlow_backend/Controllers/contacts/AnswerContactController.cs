@@ -8,7 +8,7 @@ using System.Text;
 
 namespace anonyFlow_backend.Controllers.user
 {
-    [Route("api/user/[controller]")]
+    [Route("api/contacts/[controller]")]
     public class AnswerContactController : Controller
     {
         [HttpPost]

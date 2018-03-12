@@ -78,8 +78,8 @@ namespace anonyFlow_backend.Controllers
         }
     }
 
-    [Route("api/chat/[controller]")]
-    public class GetChatsController : Controller
+    [Route("api/contacts/[controller]")]
+    public class GetContactsController : Controller
     {
         [HttpPost]
         public Response Post([FromBody]dynamic obj)

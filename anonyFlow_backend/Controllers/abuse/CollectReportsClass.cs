@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
-namespace anonyFlow_backend.Controllers.abuse
+namespace anonyFlow_backend.Controllers
 {
 
     // subset class of Response to hold all collected reports regarding a user.
@@ -18,19 +18,21 @@ namespace anonyFlow_backend.Controllers.abuse
         public List<ReportClass> reports { get; set; }
 
         // with user_id
-        public CollectedReportsObject(Response response, int user_id, int reports_recieved, List<ReportClass> reports)
+        public CollectedReportsObject(Response response, int user_id, int reports_received, List<ReportClass> reports)
             : base (response.success, response.error, response.message) {
             this.user_id = user_id;
             this.reports_received = reports_received;
             this.reports = reports;
+            return;
         }
 
         // without a user id
-        public CollectedReportsObject(Response response, int reports_recieved, List<ReportClass> reports)
+        public CollectedReportsObject(Response response, int reports_received, List<ReportClass> reports)
             : base (response.success, response.error, response.message) 
         {
             this.reports_received = reports_received;
             this.reports = reports;
+            return;
         }
 
         // if zero results or an error.
@@ -96,11 +98,11 @@ namespace anonyFlow_backend.Controllers.abuse
                         
                     // select based on only a post/comment ID
                     if(this.user_id == null) {
+                        //  select where applied post/comment ID has been reported.
+                        sb.Append(" WHERE report_table = '" + this.table + "' AND report_table_id = " + this.id);
+                    } else {
                         // select each report where this user_id has been reported.
                         sb.Append(" WHERE report_user_id = " + this.user_id);
-                    } else {
-                        // else, select where applied post/comment ID has been reported.
-                        sb.Append(" WHERE report_table = '" + this.table + "' AND report_table_id = " + this.id);
                     }
 
                     String sql = sb.ToString();
@@ -130,7 +132,6 @@ namespace anonyFlow_backend.Controllers.abuse
                                         // get amount of times this post/comment id has been reported.
                                         // increment value.
                                         reports_received_counter++;
-
                                     } else {
                                         
                                         reports_received_counter++;
@@ -153,7 +154,6 @@ namespace anonyFlow_backend.Controllers.abuse
                                 if(this.user_id == null) {
 
                                     // add object to report list
-
                                     // 1 object is only needed, since we're counting the same post/comment being reported for abuse.
                                     reports.Add(
                                         new ReportClass(

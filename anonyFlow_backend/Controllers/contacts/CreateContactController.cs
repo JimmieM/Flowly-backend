@@ -9,7 +9,7 @@ using System.Net.Http;
 
 namespace anonyFlow_backend.Controllers
 {
-    [Route("api/user/[controller]")]
+    [Route("api/contacts/[controller]")]
     public class CreateContactController : Controller
     {
 
@@ -33,7 +33,7 @@ namespace anonyFlow_backend.Controllers
                               "WHERE " +
                               "(contact_user_id = " + your_id + " AND contact_with_user_id = " + contact_id + ") " +
                               "OR " +
-                              "(contact_user_id = " + your_id + " AND contact_with_user_id = " + contact_id + ")");
+                              "(contact_user_id = " + contact_id + " AND contact_with_user_id = " + your_id + ")");
 
                     String sql = sb.ToString();
 

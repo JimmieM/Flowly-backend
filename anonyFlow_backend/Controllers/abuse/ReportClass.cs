@@ -1,5 +1,5 @@
 ﻿using System;
-namespace anonyFlow_backend.Controllers.abuse
+namespace anonyFlow_backend.Controllers
 {
     // class to hold a specific report of a post or comment.
     public class ReportClass
