@@ -81,12 +81,13 @@ namespace anonyFlow_backend.Controllers
     public class ReportPostContentController : Controller
     {
 
-        private int maximum_reports = 15;
+        private int maximum_reports_by_ban = 15;
+        private int maximum_reports_by_removal = 15;
+
 
         [HttpPost]
         public Response Post([FromBody]dynamic obj)
         {
-            Contract.Ensures(Contract.Result<Response>() != null);
             int user_id = obj.user_id; // 1
             int user_reported_id = obj.user_content_creator_id;
             int table_id = obj.table_id; // 1 
@@ -100,6 +101,20 @@ namespace anonyFlow_backend.Controllers
                 // File the report into system
                 ReportAbuseByPost new_report = new ReportAbuseByPost(user_id, user_reported_id, table, table_id, reason);
                 Response report = new_report.report();
+
+                CollectReportsClass collection = new CollectReportsClass(table, table_id, user_id);
+                CollectedReportsObject returnable = collection.returnReports();
+                var returnable_reports_received = returnable.reports_received;
+
+                if(returnable_reports_received >= this.maximum_reports_by_removal) {
+                    RemoveContentController remove_content = new RemoveContentController(table, table_id);
+                    Response remove = remove_content.removeContent();
+
+                    if(remove.didSucceed()) {
+                        // create new notification (static).
+                    }
+               
+                }
 
                 Console.WriteLine(report.success);
             } catch(Exception e) {
@@ -118,7 +133,7 @@ namespace anonyFlow_backend.Controllers
                     var returnable_reports_received = returnable.reports_received;
 
                     // ban the user
-                    if (returnable_reports_received >= this.maximum_reports)
+                    if (returnable_reports_received >= this.maximum_reports_by_ban)
                     {
                         BanUserClass ban_blass = new BanUserClass(user_reported_id);
 

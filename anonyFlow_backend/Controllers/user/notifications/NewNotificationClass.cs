@@ -77,6 +77,7 @@ namespace anonyFlow_backend.Controllers
 
         public int user_id;
         private int post_id;
+        private int comment_id;
 
         private string content;
         public PushNotificationObject push_object { get; set; }
@@ -139,7 +140,6 @@ namespace anonyFlow_backend.Controllers
                       "WHERE [user_id] = " + user_id +
                       " AND [user_platform] IS NOT NULL" +
                       " AND [user_device_token] IS NOT NULL"
-
                      );
 
                     String sql = sb.ToString();
