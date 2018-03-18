@@ -243,25 +243,26 @@ namespace anonyFlow_backend.Controllers
             return new Response(false, true, "");
         }
 
-        public List<comment> GetComments(int postId) {
+        public List<comment> GetComments(int post_id) {
             var comments = new List<comment>();
 
             try {
 
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString)) {
                     connection.Open();
-                    StringBuilder sb = new StringBuilder();
+
+                    sb = new StringBuilder();
 
                     sb.Append("SELECT " +
                       " [comments].[comment_id]," +
                       " [comments].[comment_user_id]," +
                       " [comments].[comment_content]," +
                       " [comments].[comment_date]," +
-                              " [comments].[comment_likes]," +
+                      " [comments].[comment_likes]," +
                       " [comments].[comment_dislikes]" +
                       " FROM [dbo].[comments]" +
-                      "WHERE [comments].[comment_post_id] LIKE " + postId +
-                              "ORDER BY comment_date ASC"
+                      " WHERE [comments].[comment_post_id] = " + post_id +
+                      " ORDER BY comment_id ASC"
                      );
 
                     String sql = sb.ToString();

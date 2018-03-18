@@ -1,37 +1,15 @@
 ﻿<Properties StartupConfiguration="{474E22FB-FB20-49B2-A283-3FDE094A776A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Controllers/user/notifications/NewNotificationClass.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="anonyFlow_backend/Modules/ModulesClass.cs">
     <Files>
-      <File FileName="anonyFlow_backend/Controllers/user/SignupController.cs" Line="113" Column="14" />
-      <File FileName="anonyFlow_backend/Controllers/user/LoginController.cs" Line="39" Column="36" />
-      <File FileName="anonyFlow_backend/Interfaces/ResponseClass.cs" Line="12" Column="20" />
-      <File FileName="anonyFlow_backend/Controllers/NewPostController.cs" Line="43" Column="45" />
-      <File FileName="anonyFlow_backend/Controllers/StandaloneFlowController.cs" Line="72" Column="52" />
-      <File FileName="anonyFlow_backend/Controllers/user/notifications/GetNotificationsController.cs" Line="44" Column="9" />
-      <File FileName="anonyFlow_backend/Controllers/topics/GetTopicsController.cs" Line="85" Column="50" />
-      <File FileName="anonyFlow_backend/Controllers/user/UpdateSettingsController.cs" Line="25" Column="60" />
-      <File FileName="anonyFlow_backend/Controllers/beta_test/GeoLocationQAController.cs" Line="40" Column="54" />
-      <File FileName="anonyFlow_backend/Middleware/PostValidationClass.cs" Line="100" Column="74" />
-      <File FileName="anonyFlow_backend/Controllers/user/GetUserActivityController.cs" Line="122" Column="54" />
-      <File FileName="anonyFlow_backend/Modules/Modules.cs" Line="1" Column="1" />
-      <File FileName="anonyFlow_backend/Modules/GetUserByPostIdClass.cs" Line="25" Column="34" />
-      <File FileName="anonyFlow_backend/Modules/GetUserIdByUsernameClass.cs" Line="22" Column="10" />
-      <File FileName="anonyFlow_backend/Controllers/contacts/CreateContactController.cs" Line="16" Column="28" />
-      <File FileName="anonyFlow_backend/Modules/ModulesClass.cs" Line="19" Column="17" />
-      <File FileName="anonyFlow_backend/Controllers/PostInteractionController.cs" Line="1" Column="1" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/ReportPostContentController.cs" Line="115" Column="101" />
-      <File FileName="anonyFlow_backend/Controllers/chat/NewChatController.cs" Line="86" Column="14" />
-      <File FileName="anonyFlow_backend/Controllers/contacts/GetContactsController.cs" Line="45" Column="65" />
-      <File FileName="anonyFlow_backend/Controllers/contacts/AnswerContactController.cs" Line="24" Column="12" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/ReportClass.cs" Line="2" Column="40" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/CollectReportsClass.cs" Line="116" Column="40" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/abuse/FilterContentClass.cs" Line="36" Column="1" NotebookId="1" />
-      <File FileName="anonyFlow_backend/appsettings.Development.json" Line="1" Column="1" NotebookId="1" />
-      <File FileName="anonyFlow_backend/appsettings.json" Line="1" Column="1" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/contacts/RemoveContactController.cs" Line="20" Column="1" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/FlowController.cs" Line="253" Column="37" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/RemoveContentController.cs" Line="36" Column="22" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/NewCommentController.cs" Line="54" Column="25" NotebookId="1" />
-      <File FileName="anonyFlow_backend/Controllers/user/notifications/NewNotificationClass.cs" Line="62" Column="10" NotebookId="1" />
+      <File FileName="anonyFlow_backend/Interfaces/ResponseClass.cs" Line="21" Column="37" />
+      <File FileName="anonyFlow_backend/Modules/SQLClass.cs" Line="15" Column="2" />
+      <File FileName="anonyFlow_backend/Controllers/NewCommentController.cs" Line="62" Column="63" />
+      <File FileName="anonyFlow_backend/Controllers/PostInteractionController.cs" Line="56" Column="113" />
+      <File FileName="anonyFlow_backend/Controllers/StandaloneFlowController.cs" Line="53" Column="22" />
+      <File FileName="anonyFlow_backend/Controllers/FlowController.cs" Line="261" Column="53" />
+      <File FileName="anonyFlow_backend/Modules/ModulesClass.cs" Line="19" Column="1" />
+      <File FileName="anonyFlow_backend/Controllers/chat/NewChatController.cs" Line="40" Column="13" NotebookId="1" />
+      <File FileName="anonyFlow_backend/Controllers/user/notifications/NewNotificationClass.cs" Line="242" Column="25" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

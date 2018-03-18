@@ -50,7 +50,10 @@ namespace anonyFlow_backend.Controllers
                         cmd.ExecuteNonQuery();
 
 
-                        NewNotificationClass notification = new NewNotificationClass(origin_post_id, "Someone interacted on your " + table);
+                        PushNotificationObject push_object = new PushNotificationObject("Someone interacted on your " + table);
+
+
+                        NewNotificationClass notification = new NewNotificationClass(origin_post_id, push_object);
 
                         bool origin_user_id = notification.GetUserId(); // if the original poster's user id can be retrieved.
 

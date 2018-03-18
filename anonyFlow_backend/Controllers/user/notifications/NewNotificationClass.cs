@@ -79,7 +79,6 @@ namespace anonyFlow_backend.Controllers
         private int post_id;
         private int comment_id;
 
-        private string content;
         public PushNotificationObject push_object { get; set; }
 
         private NewNotificationClass() {}
@@ -91,17 +90,17 @@ namespace anonyFlow_backend.Controllers
             this.push_object = push_object;
         }
 
-        public NewNotificationClass(int user_id, int post_id, string content)
+        public NewNotificationClass(int user_id, int post_id, PushNotificationObject push_object)
         {
             this.user_id = user_id;
             this.post_id = post_id;
-            this.content = content;
+            this.push_object = push_object;
         }
 
-        public NewNotificationClass(int post_id, string content)
+        public NewNotificationClass(int post_id, PushNotificationObject push_object, string x)
         {
             this.post_id = post_id;
-            this.content = content;
+            this.push_object = push_object;
         }
 
         // if getting user_id is nessecary.
@@ -112,19 +111,24 @@ namespace anonyFlow_backend.Controllers
 
             User returnable = userId.getUser();
 
-            if (returnable.didSucceed())
-            {
-                this.user_id = returnable.user_id;
-                return true;
+            try {
+                if (returnable.didSucceed())
+                {
+                    this.user_id = returnable.user_id;
+                    return true;
+                }
+
+            } catch(Exception e) {
+                Console.WriteLine(e.ToString());
             }
 
             return false;
+ 
         }
 
         // get and return device token, username, platform and store in object.
         public UserPushDetails getDeviceToken(int user_id)
         {
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
@@ -187,6 +191,7 @@ namespace anonyFlow_backend.Controllers
 
         private async void pushNotification(string device_token, PushNotificationObject obj)
         {
+            Console.WriteLine(obj);
             var values = new Dictionary<string, string>
             {
                 { "device_token", device_token },
@@ -195,17 +200,19 @@ namespace anonyFlow_backend.Controllers
                 { "dynamic_id", obj.dynamic_id.ToString() }
             };
 
+            Console.WriteLine(values.ToString());
+
             var messageForm = new FormUrlEncodedContent(values);
 
             var response = await client.PostAsync("https://bithatcher.com/flowly/api/push_notification.php", messageForm);
 
             var responseString = await response.Content.ReadAsStringAsync();
-
-            Console.WriteLine("Push Resp: " + responseString);
         }
 
         public Response createPush() {
             UserPushDetails details = this.getDeviceToken(this.user_id);
+
+            Console.WriteLine(details.device_token);
 
             if(details.success) {
                 this.pushNotification(details.device_token, this.push_object);
@@ -230,7 +237,7 @@ namespace anonyFlow_backend.Controllers
                     {
                         cmd.Parameters.AddWithValue("@user_id", this.user_id);
                         cmd.Parameters.AddWithValue("@post_id", this.post_id);
-                        cmd.Parameters.AddWithValue("@content", this.content);
+                        cmd.Parameters.AddWithValue("@content", this.push_object.message);
                         cmd.Parameters.AddWithValue("@date", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
 
                         cmd.ExecuteNonQuery();

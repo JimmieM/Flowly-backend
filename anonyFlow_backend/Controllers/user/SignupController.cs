@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace anonyFlow_backend.Controllers.user
 {
     [Route("api/user/[controller]")]
@@ -44,7 +42,6 @@ namespace anonyFlow_backend.Controllers.user
                         cmd.Parameters.AddWithValue("@email", email);
 
                         int i = cmd.ExecuteNonQuery();
-                        Console.WriteLine("Execute;" + i);
                         if(i > 0) {
                             GetUserIdByUsernameClass userId = new GetUserIdByUsernameClass(username);
                             UserId resp = userId.getId();
@@ -76,7 +73,6 @@ namespace anonyFlow_backend.Controllers.user
          * @returns bool if user exist.
          */
         public bool userExists(string username) {
-
             try
             {
                 SqlConnectionStringBuilder builder = WebApiConfig.Connection();

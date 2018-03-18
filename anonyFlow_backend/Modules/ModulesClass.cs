@@ -22,7 +22,7 @@ namespace anonyFlow_backend.Controllers
                 } else {
                     if (span.Hours < 1)
                     {
-                        if (span.Minutes <= 1)
+                        if (span.Minutes <3)
                         {
                             date = "right now";
                         }

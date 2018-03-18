@@ -58,7 +58,7 @@ namespace anonyFlow_backend.Controllers
                     sb.Append("SELECT " +
                      " [posts].[post_user_id] " +
                       "FROM [dbo].[posts] " +
-                              "WHERE [post_id] = " + this.post_id
+                      "WHERE [post_id] = " + this.post_id
                      );
 
 
@@ -95,7 +95,7 @@ namespace anonyFlow_backend.Controllers
             catch (SqlException e)
             {
                 Console.WriteLine(e.ToString());
-                return user = new User(false, e.ToString());
+                throw new Exception(e.ToString());
             }
         }
 

@@ -61,8 +61,12 @@ namespace anonyFlow_backend.Controllers
                             {
                                 while (reader.Read())
                                 {
+
+
+                                    Console.WriteLine(reader.GetInt32(0));
+
                                     var date = modules.betweenDates(reader.GetString(3).ToString());
-                                    List<comment> Comments = flow.GetComments(reader.GetInt32(0));
+                                    List<comment> Comments = flow.GetComments(post_id);
                                     post.Add(new flow(
                                      reader.GetInt32(0),
                                      reader.GetInt32(1),
