@@ -68,8 +68,6 @@ namespace anonyFlow_backend.Controllers
         }
     }
 
-
-
     public class NewNotificationClass
     {
         private SqlConnectionStringBuilder builder = WebApiConfig.Connection();
@@ -111,19 +109,14 @@ namespace anonyFlow_backend.Controllers
 
             User returnable = userId.getUser();
 
-            try {
-                if (returnable.didSucceed())
+            Console.WriteLine(returnable.message);
+            if (returnable.didSucceed())
                 {
                     this.user_id = returnable.user_id;
                     return true;
                 }
 
-            } catch(Exception e) {
-                Console.WriteLine(e.ToString());
-            }
-
-            return false;
- 
+                return false;
         }
 
         // get and return device token, username, platform and store in object.
@@ -210,10 +203,13 @@ namespace anonyFlow_backend.Controllers
         }
 
         public Response createPush() {
+             
+            Console.WriteLine(this.push_object);
+
+            // device token is always needed.
             UserPushDetails details = this.getDeviceToken(this.user_id);
 
-            Console.WriteLine(details.device_token);
-
+            // if token could be retreived.
             if(details.success) {
                 this.pushNotification(details.device_token, this.push_object);
 

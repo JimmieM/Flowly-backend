@@ -52,7 +52,7 @@ namespace anonyFlow_backend.Controllers
                         cmd.ExecuteNonQuery();
 
                         PushNotificationObject push_object = new PushNotificationObject("Someone commented on your post");
-                        NewNotificationClass notification = new NewNotificationClass(comment_post_id, push_object);
+                        NewNotificationClass notification = new NewNotificationClass(comment_post_id, push_object, "");
 
                         bool origin_user_id = notification.GetUserId(); // if the original poster's user id can be retrieved.
 
@@ -62,8 +62,6 @@ namespace anonyFlow_backend.Controllers
                         // and the commenters user_id is not the same as yours. (?)
                         if(origin_user_id && notification.user_id != comment_user_id) {
 
-                            Console.WriteLine("HERE:");
-
                             try {
                                 Response newNotification = notification.createNotification();
 
@@ -72,10 +70,7 @@ namespace anonyFlow_backend.Controllers
                                 Console.WriteLine(e);
                             }
 
-
                             return new Response(true, "Did Send push!");
-                        } else {
-                            Console.WriteLine("here....");
                         }
 
                         return new Response(true, "");
